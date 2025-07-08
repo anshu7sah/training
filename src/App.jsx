@@ -7,6 +7,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const [show, setShow] = useState(false);
 
   const validatingData = (vname, vemail, vpassword) => {
     if (vname.length < 2 || vemail.length < 2 || vpassword.length < 2) {
@@ -33,6 +34,9 @@ function App() {
     e.preventDefault();
     console.log(name, email, password);
   };
+  const showHandler = () => {
+    setShow((d) => !d);
+  };
 
   return (
     <>
@@ -48,10 +52,13 @@ function App() {
         <div className="name">
           <label htmlFor="password">Password</label>
           <input
-            type="password"
+            type={show ? "text" : "password"}
             id="password"
             onChange={passwordChangeHandler}
           />
+          <button type="button" onClick={showHandler}>
+            show
+          </button>
         </div>
         <button disabled={disabled}>Submit</button>
         <p className="error">{error}</p>
