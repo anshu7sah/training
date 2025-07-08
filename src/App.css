@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+}
+.name > label {
+  font-size: large;
+  font-weight: bold;
+}
+
+.name > input {
+  padding: 5px;
+  border: 1px solid grey;
+  outline: none;
+  border-radius: 5px;
+}
+.error {
+  color: red;
+}
