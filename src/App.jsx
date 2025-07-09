@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 import "./App.css";
+import { useOnline } from "./hooks/use-online";
 
 function App() {
-  const ref = useRef(null);
-  useEffect(() => {
-    ref.current.focus();
-  }, [ref]);
+  const onlineStatus = useOnline();
 
   return (
     <div>
-      <input type="text" ref={ref} />
+      {onlineStatus ? "you are online" : "You are not online"}
+      <input type="file" />
+      <button>Select Image</button>
     </div>
   );
 }
