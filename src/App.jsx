@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState(1);
-  const [u, setU] = useState(2);
-  const [name, setName] = useState("");
-
+  const ref = useRef(null);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("name", name);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [name]);
-
-  const clickHandler = () => {
-    setData((p) => p + 1);
-  };
-
-  const uclickHandler = () => {
-    setU((p) => p + 1);
-  };
+    ref.current.focus();
+  }, [ref]);
 
   return (
     <div>
-      {data}
-      <br /> {u}
-      <br />
-      <button onClick={clickHandler}>click</button>
-      <br />
-      <button onClick={uclickHandler}>Uclick</button>
-      <input type="text" onChange={(e) => setName(e.target.value)} />
+      <input type="text" ref={ref} />
     </div>
   );
 }
