@@ -1,70 +1,21 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
+import debounce from "lodash.debounce"; // or your custom debounce utility
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const [show, setShow] = useState(false);
+  const debouncedSearch = debounce((query) => {
+    // Perform your search or API call here
+    console.log("Debounced search for:", query);
+  }, 500);
 
-  const validatingData = (vname, vemail, vpassword) => {
-    if (vname.length < 2 || vemail.length < 2 || vpassword.length < 2) {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-    }
-  };
+  const handleChange = useCallback(
+    (event) => {
+      debouncedSearch(event.target.value);
+    },
+    [debouncedSearch]
+  ); // Include debouncedSearch in dependency array if it could change
 
-  const nameChangeHandler = (e) => {
-    setName(e.target.value);
-    validatingData(e.target.value, email, password);
-  };
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-    validatingData(name, e.target.value, password);
-  };
-  const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
-    validatingData(name, email, e.target.value);
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log(name, email, password);
-  };
-  const showHandler = () => {
-    setShow((d) => !d);
-  };
-
-  return (
-    <>
-      <form className="form" onSubmit={submitHandler}>
-        <div className="name">
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" onChange={nameChangeHandler} />
-        </div>
-        <div className="name">
-          <label htmlFor="email">Email</label>
-          <input type="text" id="email" onChange={emailChangeHandler} />
-        </div>
-        <div className="name">
-          <label htmlFor="password">Password</label>
-          <input
-            type={show ? "text" : "password"}
-            id="password"
-            onChange={passwordChangeHandler}
-          />
-          <button type="button" onClick={showHandler}>
-            show
-          </button>
-        </div>
-        <button disabled={disabled}>Submit</button>
-        <p className="error">{error}</p>
-      </form>
-    </>
-  );
+  return <input type="text" onChange={handleChange} />;
 }
 
 export default App;
