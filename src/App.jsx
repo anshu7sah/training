@@ -1,30 +1,19 @@
-import { useEffect, useRef } from "react";
 import "./App.css";
-import { useOnline } from "./hooks/use-online";
+
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Contacts from "./pages/Contacts";
+import SingleProduct from "./pages/SingleProduct";
 
 function App() {
-  const onlineStatus = useOnline();
-
   return (
-    <div>
-      {onlineStatus ? "you are online" : "You are not online"}
-      <input type="file" />
-      <button>Select Image</button>
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/contacts" element={<Contacts />} />
+
+      <Route path="/singleproduct/:id" element={<SingleProduct />} />
+    </Routes>
   );
 }
 
-// function App() {
-//   const debouncedSearch = debounce((query) => {
-//     console.log("Debounced search for:", query);
-//   }, 500);
-
-//   const handleChange = (event) => {
-//     debouncedSearch(event.target.value);
-//   };
-
-//   // Include debouncedSearch in dependency array if it could change
-
-//   return <input type="text" onChange={handleChange} />;
-// }
 export default App;
