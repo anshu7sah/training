@@ -13,11 +13,10 @@ const SingleProduct = () => {
     };
     fetchingData();
   }, []);
-  console.log(productData);
 
   return (
     <div>
-      <p className="font-bold">{productData?.title}</p>
+      <p className="font-bold bg-amber-100 ">{productData?.title}</p>
       <p>{productData?.brand}</p>
       <p>{productData?.category}</p>
       <p>{productData?.description}</p>

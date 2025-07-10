@@ -15,6 +15,7 @@ const Homepage = () => {
 
   return (
     <div>
+      <a href="/counter">Counter</a>
       {data?.map((d) => (
         <div
           key={d.id}
