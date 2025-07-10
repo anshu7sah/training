@@ -6,6 +6,7 @@ import Contacts from "./pages/Contacts";
 import SingleProduct from "./pages/SingleProduct";
 import Counter from "./pages/Counter";
 import Theme from "./pages/Theme";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/singleproduct/:id" element={<SingleProduct />} />
       <Route path="/counter" element={<Counter />} />
       <Route path="/theme" element={<Theme />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }

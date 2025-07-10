@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import ThemeContext from "../context/context";
 
 const Theme = () => {
-  const { theme, themeToggling } = useContext(ThemeContext);
-  const themeClickHandler = () => {
-    themeToggling();
-  };
+  //   const { theme, themeToggling } = useContext(ThemeContext);
+  //   const themeClickHandler = () => {
+  //     themeToggling();
+  //   };
   return (
     <div
       className={`flex h-screen flex-col items-center justify-center ${
